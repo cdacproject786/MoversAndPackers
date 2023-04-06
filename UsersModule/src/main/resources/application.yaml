@@ -1,0 +1,34 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:UsersDb
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver
+    jpa:
+      hibernate:
+        ddl-auto: update
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+  h2:
+    console:
+      enabled: true
+
+
+  application:
+    name: user-service
+
+eureka:
+  client:
+    prefer-same-zone-eureka: false
+    serviceUrl:
+      defaultZone: http://10.0.61.145:8761/eureka/
+      instance:
+        prefer-ip-address: true
+        hostname: $(server.address)
+        ip-address: $(server.address)
+        instance-id: ${server.address}:${spring.application.name}:${server.port}
+
+
+server:
+  address: 10.0.61.193
+  port: 8077
